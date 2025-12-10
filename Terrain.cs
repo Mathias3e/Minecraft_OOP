@@ -11,7 +11,7 @@ namespace Projekt_Minecraft
 
         public static void InitializeTerrain()
         {
-            TerrainMap = new int[Game.Height, Game.Width];
+            TerrainMap = new int[Game.Width, Game.Height];
         }
 
         public static void GenerateTerrain()
@@ -25,31 +25,23 @@ namespace Projekt_Minecraft
                 {
                     if (y >= height)
                     {
-                        TerrainMap[y, x] = 1;
+                        TerrainMap[x, y] = 1;
                     }
                     else
                     {
-                        TerrainMap[y, x] = 0;
+                        TerrainMap[x, y] = 0;
                     }
                 }
 
                 int randomUpDown = random.Next(1, 101);
 
-                if (randomUpDown <= 20)
+                if (randomUpDown <= 25)
                 {
                     height++;
                 }
-                else if (randomUpDown <= 40)
-                {
-                    height--;
-                }
-                else if (randomUpDown <= 45)
-                {
-                    height += 2;
-                }
                 else if (randomUpDown <= 50)
                 {
-                    height -= 2;
+                    height--;
                 }
 
                 if (height < 2)

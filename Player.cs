@@ -9,7 +9,7 @@ namespace Projekt_Minecraft
 {
     internal static class Player
     {
-        public static int PosX { get; private set; } = 0;
+        public static int PosX { get; private set; } = 1;
         public static int PosY { get; private set; } = 0;
 
         public static void Move(Direction direction) // Block dedettion einfügen
@@ -36,6 +36,18 @@ namespace Projekt_Minecraft
         {
             PosX = x;
             PosY = y;
+        }
+
+        public static void SetToGround()
+        {
+            for (int posY = 0; posY < Game.Height - 1; posY++)
+            {
+                if (Terrain.TerrainMap[PosX, posY] == 1)
+                {
+                    SetPos(PosX, posY - 1);
+                    return;
+                }
+            }
         }
     }
 }

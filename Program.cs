@@ -7,14 +7,21 @@ namespace Projekt_Minecraft
     {
         static void Main()
         {
-            Game.SetSize(10, 10);
+            Game.SetSize(50, 10);
             Terrain.InitializeTerrain();
             Renderer.InitializeCanvas();
 
             Terrain.GenerateTerrain();
-            Player.SetPos(3, 0);
-
+            Player.SetToGround();
             Renderer.RenderWorld();
+
+            for (int i = Player.PosX; i < Game.Width - 2; i++)
+            {
+                Thread.Sleep(500);
+                Player.Move(Direction.Right);
+                Player.SetToGround();
+                Renderer.RenderWorld();
+            }
 
             /*
             int width = 100;
