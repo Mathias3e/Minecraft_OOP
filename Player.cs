@@ -35,38 +35,18 @@ namespace Projekt_Minecraft
             this.PosY += posY;
         }
 
-        public void Move()
+        public void Move(Direction direction)
         {
-            var key = Console.ReadKey(true).Key;
-
-            switch (key)
+            switch (direction)
             {
-                case ConsoleKey.W:
-                case ConsoleKey.UpArrow:
-                    if (PosY > 0)
-                    {
-                        PosY--;
-                    }
-                    break;
-
-                case ConsoleKey.S:
-                case ConsoleKey.DownArrow:
-                    if (PosY < World.Height - 2)
-                    {
-                        PosY++;
-                    }
-                    break;
-
-                case ConsoleKey.A:
-                case ConsoleKey.LeftArrow:
+                case Direction.Left:
                     if (PosX > 0)
                     {
                         PosX--;
                     }
                     break;
 
-                case ConsoleKey.D:
-                case ConsoleKey.RightArrow:
+                case Direction.Right:
                     if (PosX < World.Width - 1)
                     {
                         PosX++;
