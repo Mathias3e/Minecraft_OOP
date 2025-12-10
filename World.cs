@@ -10,6 +10,7 @@ namespace Projekt_Minecraft
         public static int Width;
         public static int Height { get; private set; }
         private static Canvas world = new Canvas(Width, Height);
+        public static int[][] TerrainMap { get; private set; }
 
         public static void SetSize(int width = 100, int height = 45)
         {
@@ -27,6 +28,11 @@ namespace Projekt_Minecraft
                 }
             }
             AnsiConsole.Write(world);
+        }
+
+        public static void GenerteTerain()
+        {
+            
         }
     }
 }
