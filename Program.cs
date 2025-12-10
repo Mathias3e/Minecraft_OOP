@@ -29,7 +29,38 @@ namespace Projekt_Minecraft
                 AnsiConsole.Write(canvas);
                 AnsiConsole.MarkupLine($"\n[grey]Position: X={playerX}, Y={playerY}[/]");
 
-         
+                var key = Console.ReadKey(true).Key;
+
+                switch (key)
+                {
+                    case ConsoleKey.W:
+                    case ConsoleKey.UpArrow:
+                        if (playerY > 0)
+                            playerY--;
+                        break;
+
+                    case ConsoleKey.S:
+                    case ConsoleKey.DownArrow:
+                        if (playerY < height - 2)
+                            playerY++;
+                        break;
+
+                    case ConsoleKey.A:
+                    case ConsoleKey.LeftArrow:
+                        if (playerX > 0)
+                            playerX--;
+                        break;
+
+                    case ConsoleKey.D:
+                    case ConsoleKey.RightArrow:
+                        if (playerX < width - 1)
+                            playerX++;
+                        break;
+
+                    case ConsoleKey.Escape:
+                        running = false;
+                        break;
+                }
             }
 
             AnsiConsole.Clear();
