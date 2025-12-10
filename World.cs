@@ -27,10 +27,10 @@ namespace Projekt_Minecraft
             {
                 for (int y = 0; y < Height; y++)
                 {
-                    world.SetPixel(x, y, Color.CadetBlue);
+                    World.SetPixel(x, y, Color.CadetBlue);
                 }
             }
-            AnsiConsole.Write(world);
+            AnsiConsole.Write(World);
         }
 
         public static void GenerateTerrain()
