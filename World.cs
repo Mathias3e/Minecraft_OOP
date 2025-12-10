@@ -9,15 +9,16 @@ namespace Projekt_Minecraft
     {
         public static int Width { get; private set; }
         public static int Height { get; private set; }
-        public static Canvas world;
+        private static Canvas World;
 
-        public static int[][] TerrainMap { get; private set; }
+        public static int[,] TerrainMap { get; private set; }
 
         public static void SetSize(int width = 100, int height = 45)
         {
             Width = width + 1;
             Height = height + 2;
-            world = new Canvas(Width, Height);
+            World = new Canvas(Width, Height);
+            TerrainMap = new int[Height, Width];
         }
 
         public static void RenderWorld()
@@ -26,15 +27,30 @@ namespace Projekt_Minecraft
             {
                 for (int y = 0; y < Height; y++)
                 {
-                    world.SetPixel(x, y, Color.CadetBlue);
+                    World.SetPixel(x, y, Color.CadetBlue);
                 }
             }
-            AnsiConsole.Write(world);
+            AnsiConsole.Write(World);
         }
 
         public static void GenerateTerrain()
         {
-            
+            Random random = new Random();
+            for (int i = 0; i < Width; i++)
+            {
+                int height = random.Next(1, Height + 1);
+                for (int j = 0; j < Height; j++)
+                {
+                    if (j <= height)
+                    {
+                        grid[y, x] = 1;
+                    }
+                    else
+                    {
+                        grid[y, x] = 0;
+                    }
+                }
+            }
         }
     }
 }
