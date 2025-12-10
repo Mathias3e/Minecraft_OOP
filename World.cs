@@ -7,14 +7,16 @@ namespace Projekt_Minecraft
 {
     internal static class World
     {
-        public static int Width;
+        public static int Width { get; private set; }
         public static int Height { get; private set; }
-        private static Canvas world = new Canvas(Width, Height);
+        private static Canvas world;
+
 
         public static void SetSize(int width = 100, int height = 45)
         {
             Width = width + 1;
             Height = height + 2;
+            world = new Canvas(Width, Height);
         }
 
         public static void RenderWorld()
