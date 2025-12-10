@@ -7,45 +7,12 @@ using Spectre.Console.Rendering;
 
 namespace Projekt_Minecraft
 {
-    internal class Player
+    internal static class Player
     {
-        private static int PlayerCount = 0;
-        public int PosX { get; private set; }
-        public int PosY { get; private set; }
+        public static int PosX { get; private set; } = 0;
+        public static int PosY { get; private set; } = 0;
 
-        private Player (int posX, int posY)
-        {
-            this.PosX = posX;
-            this.PosY = posY;
-            PlayerCount++;
-        }
-
-        public static Player CreatePlayer(int posX, int posY)
-        {
-            if (PlayerCount >= 1)
-            {
-                throw new InvalidOperationException("Only one player instance is allowed.");
-            }
-            else
-            {
-                return new Player(posX, posY);
-            }
-        }
-
-        public void SetPos(int posX, int posY)
-        {
-            int count = 0;
-            for (int i = 0; i < World.TerrainMap.GetLength(1); i++)
-            {
-                if (World.TerrainMap[3, i] == 1)
-                    count++;
-            }
-
-            this.PosX = 2;
-            this.PosY = count;
-        }
-
-        public void Move(Direction direction)
+        public static void Move(Direction direction) // Block dedettion einfügen
         {
             switch (direction)
             {
@@ -57,7 +24,7 @@ namespace Projekt_Minecraft
                     break;
 
                 case Direction.Right:
-                    if (PosX < World.Width - 1)
+                    if (PosX < Game.Width - 1)
                     {
                         PosX++;
                     }
@@ -65,10 +32,10 @@ namespace Projekt_Minecraft
             }
         }
 
-        public void Render()
+        public static void SetPos(int x, int y)
         {
-            World.world.SetPixel(PosX, PosY, Color.Red);
-            World.world.SetPixel(PosX, PosY + 1, Color.Red);
+            PosX = x;
+            PosY = y;
         }
     }
 }

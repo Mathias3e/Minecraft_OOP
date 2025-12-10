@@ -7,9 +7,14 @@ namespace Projekt_Minecraft
     {
         static void Main()
         {
-            World.SetSize();
-            World.GenerateTerrain();
-            World.RenderWorld();
+            Game.SetSize(10, 10);
+            Terrain.InitializeTerrain();
+            Renderer.InitializeCanvas();
+
+            Terrain.GenerateTerrain();
+            Player.SetPos(3, 0);
+
+            Renderer.RenderWorld();
 
             /*
             int width = 100;
