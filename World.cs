@@ -32,7 +32,7 @@ namespace Projekt_Minecraft
             AnsiConsole.Write(world);
         }
 
-        public static void GenerteTerain()
+        public static void GenerateTerrain()
         {
             
         }
