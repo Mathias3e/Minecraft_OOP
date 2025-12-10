@@ -29,10 +29,50 @@ namespace Projekt_Minecraft
             }
         }
 
-        public void SetPos(int posX, int posY)
+        public void SetPos(int posX, int posY) // Am Anfang auf terain platziren
         {
             this.PosX += posX;
             this.PosY += posY;
+        }
+
+        public void Move()
+        {
+            var key = Console.ReadKey(true).Key;
+
+            switch (key)
+            {
+                case ConsoleKey.W:
+                case ConsoleKey.UpArrow:
+                    if (PosY > 0)
+                    {
+                        PosY--;
+                    }
+                    break;
+
+                case ConsoleKey.S:
+                case ConsoleKey.DownArrow:
+                    if (PosY < World.Height - 2)
+                    {
+                        PosY++;
+                    }
+                    break;
+
+                case ConsoleKey.A:
+                case ConsoleKey.LeftArrow:
+                    if (PosX > 0)
+                    {
+                        PosX--;
+                    }
+                    break;
+
+                case ConsoleKey.D:
+                case ConsoleKey.RightArrow:
+                    if (PosX < World.Width - 1)
+                    {
+                        PosX++;
+                    }
+                    break;
+            }
         }
     }
 }
