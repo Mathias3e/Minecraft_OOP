@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Spectre.Console;
+using Spectre.Console.Rendering;
 
 namespace Projekt_Minecraft
 {
@@ -53,6 +55,12 @@ namespace Projekt_Minecraft
                     }
                     break;
             }
+        }
+
+        public void Render()
+        {
+            World.world.SetPixel(PosX, PosY, Color.Red);
+            World.world.SetPixel(PosX, PosY + 1, Color.Red);
         }
     }
 }

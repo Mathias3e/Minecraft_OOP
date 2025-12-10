@@ -9,7 +9,7 @@ namespace Projekt_Minecraft
     {
         public static int Width { get; private set; }
         public static int Height { get; private set; }
-        private static Canvas world;
+        public static Canvas world;
 
         public static int[][] TerrainMap { get; private set; }
 
