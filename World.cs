@@ -9,7 +9,7 @@ namespace Projekt_Minecraft
     {
         public static int Width { get; private set; }
         public static int Height { get; private set; }
-        private static Canvas World;
+        private static Canvas world;
 
         public static int[,] TerrainMap { get; private set; }
 
@@ -17,7 +17,7 @@ namespace Projekt_Minecraft
         {
             Width = width + 1;
             Height = height + 2;
-            World = new Canvas(Width, Height);
+            world = new Canvas(Width, Height);
             TerrainMap = new int[Height, Width];
         }
 
@@ -27,10 +27,10 @@ namespace Projekt_Minecraft
             {
                 for (int y = 0; y < Height; y++)
                 {
-                    World.SetPixel(x, y, Color.CadetBlue);
+                    world.SetPixel(x, y, Color.CadetBlue);
                 }
             }
-            AnsiConsole.Write(World);
+            AnsiConsole.Write(world);
         }
 
         public static void GenerateTerrain()
