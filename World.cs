@@ -10,7 +10,6 @@ namespace Projekt_Minecraft
         public static int Width { get; private set; }
         public static int Height { get; private set; }
         private static Canvas world;
-        private static Canvas world = new Canvas(Width, Height);
         public static int[][] TerrainMap { get; private set; }
 
         public static void SetSize(int width = 100, int height = 45)
