@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Spectre.Console;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -29,10 +30,17 @@ namespace Projekt_Minecraft
             }
         }
 
-        public void SetPos(int posX, int posY) // Am Anfang auf terain platziren
+        public void SetPos(int posX, int posY)
         {
-            this.PosX += posX;
-            this.PosY += posY;
+            int count = 0;
+            for (int i = 0; i < World.TerrainMap.GetLength(1); i++)
+            {
+                if (World.TerrainMap[3, i] == 1)
+                    count++;
+            }
+
+            this.PosX = 2;
+            this.PosY = count;
         }
 
         public void Move(Direction direction)

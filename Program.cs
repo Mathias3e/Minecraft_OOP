@@ -7,6 +7,11 @@ namespace Projekt_Minecraft
     {
         static void Main()
         {
+            World.SetSize();
+            World.GenerateTerrain();
+            World.RenderWorld();
+
+            /*
             int width = 100;
             int height = 45;
 
@@ -61,6 +66,7 @@ namespace Projekt_Minecraft
             }
 
             AnsiConsole.Clear();
+        */
         }
     }
 }

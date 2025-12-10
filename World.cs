@@ -27,7 +27,14 @@ namespace Projekt_Minecraft
             {
                 for (int y = 0; y < Height; y++)
                 {
-                    world.SetPixel(x, y, Color.CadetBlue);
+                    if (TerrainMap[y, x] == 0)
+                    {
+                        world.SetPixel(x, y, Color.Green);
+                    }
+                    else
+                    {
+                        world.SetPixel(x, y, Color.CornflowerBlue);
+                    }   
                 }
             }
             AnsiConsole.Write(world);
@@ -36,19 +43,50 @@ namespace Projekt_Minecraft
         public static void GenerateTerrain()
         {
             Random random = new Random();
-            for (int i = 0; i < Width; i++)
+            int height = random.Next(2, Height + 1);
+            height = Height / 2;
+
+            for (int x = 0; x < Width; x++)
             {
-                int height = random.Next(1, Height + 1);
-                for (int j = 0; j < Height; j++)
+                for (int y = 0; y < Height; y++)
                 {
-                    if (j <= height)
+                    if (y <= height)
                     {
-                        grid[y, x] = 1;
+                        TerrainMap[y, x] = 1;
                     }
                     else
                     {
-                        grid[y, x] = 0;
+                        TerrainMap[y, x] = 0;
                     }
+                }
+
+                int randomUpDown = random.Next(1, 101);
+
+                if (randomUpDown <= 20)
+                {
+                    height++;
+                }
+                else if (randomUpDown <= 40)
+                {
+                    height--;
+                }
+                else if (randomUpDown <= 45)
+                {
+                    height += 2;
+                }
+                else if (randomUpDown <= 50)
+                {
+                    height -= 2;
+                }
+
+                if (height < 2)
+                {
+                    height = 2;
+                }
+
+                if (height > Height - 2)
+                {
+                    height = Height - 2;
                 }
             }
         }
