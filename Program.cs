@@ -7,8 +7,8 @@ namespace Projekt_Minecraft
     {
         static void Main()
         {
-            int width = 100 + 1;
-            int height = 45 + 2;
+            int width = 100;
+            int height = 45;
 
             int playerX = 0;
             int playerY = height - 2;
@@ -21,12 +21,9 @@ namespace Projekt_Minecraft
             {
                 World.SetSize(width, height);
 
-                canvas.SetPixel(playerX, playerY, Color.Green);
-                canvas.SetPixel(playerX, playerY + 1, Color.Green);
-
                 AnsiConsole.Clear();
                 AnsiConsole.MarkupLine("[bold yellow]Minecraft Demo[/]");
-                AnsiConsole.Write(canvas);
+                World.RenderWorld();
                 AnsiConsole.MarkupLine($"\n[grey]Position: X={playerX}, Y={playerY}[/]");
 
          
