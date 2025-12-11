@@ -15,7 +15,22 @@ namespace Projekt_Minecraft
         {
             TerrainMap = new int[Game.Width, Game.Height];
         }
-        
+
+        public static void SmoothTerrain() {
+            for (int x = 1; x<Game.Width - 1; x++)
+            {
+                for (int y = Game.Height - 1; y >= 0; y--)
+                {
+                    if (TerrainMap[x, y] == 1)
+                    {
+                        if (TerrainMap[x - 1, y] == 9 && TerrainMap[x + 1, y] == 9)
+                        {
+                            TerrainMap[x, y] = 9;
+                        }
+}
+                }
+            }
+        }
         public static void GenerateTerrain(int Seed)
         {
             bool isTree1 = false;
@@ -24,6 +39,26 @@ namespace Projekt_Minecraft
 
             Random random = Seed == 0 ? new Random() : new Random(Seed);
             int height = (Game.Height / 3) * 2;
+
+            int seePosX = random.Next(3, Game.Width - 7 - 1);
+            int tree1PosX = random.Next(3, Game.Width - 3 - 1);
+            int tree2PosX = random.Next(3, Game.Width - 3 - 1);
+            int tree3PosX = random.Next(3, Game.Width - 3 - 1);
+
+            if (tree1PosX + 2 >= seePosX && tree1PosX <= seePosX + 6)
+            {
+                tree1PosX = -1;
+            }
+
+            if (tree2PosX + 2 >= seePosX && tree2PosX <= seePosX + 6)
+            {
+                tree2PosX = -1;
+            }
+
+            if (tree3PosX + 2 >= seePosX && tree3PosX <= seePosX + 6)
+            {
+                tree3PosX = -1;
+            }
 
             Tree tree1 = new Tree(random.Next(3, Game.Width - 3 - 1), height);
             Tree tree2 = new Tree(random.Next(3, Game.Width - 3 - 1), height);
@@ -143,6 +178,10 @@ namespace Projekt_Minecraft
                     {
                         height = Game.Height - 2;
                     }
+                }
+            }
+
+            SmoothTerrain();
                 //}
             }           
         }

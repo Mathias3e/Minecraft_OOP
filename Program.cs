@@ -17,10 +17,9 @@ namespace Projekt_Minecraft
 
         static void Main()
         {
-            Console.Write("Bitte geben sie einen Seed ein (für random seed leerlassen): ");
+            Console.Write("Bitte geben sie einen Seed ein (für random seed leerlassen, string = random): ");
             int.TryParse(Console.ReadLine(), out int Seed);
 
-            Game.SetSize(100, 20);
             Terrain.InitializeTerrain();
             Renderer.InitializeCanvas();
 
