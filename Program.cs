@@ -17,11 +17,14 @@ namespace Projekt_Minecraft
 
         static void Main()
         {
+            Console.Write("Bitte geben sie einen Seed ein (für random seed leerlassen): ");
+            int.TryParse(Console.ReadLine(), out int Seed);
+
             Game.SetSize(100, 20);
             Terrain.InitializeTerrain();
             Renderer.InitializeCanvas();
 
-            Terrain.GenerateTerrain();
+            Terrain.GenerateTerrain(Seed);
             Player.SetToGround();
             Renderer.RenderWorld();
 
