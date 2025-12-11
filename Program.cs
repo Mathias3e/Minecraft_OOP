@@ -54,12 +54,12 @@ namespace Projekt_Minecraft
 
                     case ConsoleKey.E:
                         if (Player.PosX > 0)
-                            Player.Jump(Direction.Left);
+                            Player.Jump(Direction.Right);
                         break;
 
                     case ConsoleKey.Q:
                         if (Player.PosX < Game.Width - 1)
-                            Player.Jump(Direction.Right);
+                            Player.Jump(Direction.Left);
                         break;
 
                     case ConsoleKey.Escape:
