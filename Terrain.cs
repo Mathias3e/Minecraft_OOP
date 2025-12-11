@@ -16,7 +16,7 @@ namespace Projekt_Minecraft
 
         public static void GenerateTerrain()
         {
-            Random random = new Random();
+            Random random = new Random(3);
             int height = (Game.Height / 3) * 2;
 
             for (int x = 0; x < Game.Width; x++)
