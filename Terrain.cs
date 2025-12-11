@@ -18,6 +18,7 @@ namespace Projekt_Minecraft
         {
             Random random = new Random();
             int height = (Game.Height / 3) * 2;
+            int randomWater = random.Next(90, 100);
 
             for (int x = 0; x < Game.Width; x++)
             {
@@ -25,11 +26,18 @@ namespace Projekt_Minecraft
                 {
                     if (y >= height)
                     {
-                        TerrainMap[x, y] = 1;
+                        if (randomWater >= 95)
+                        {
+                            TerrainMap[x, y] = 4; // Water block
+                        }
+                        else
+                        {
+                            TerrainMap[x, y] = 1; // Ground block
+                        }
                     }
                     else
                     {
-                        TerrainMap[x, y] = 0;
+                        TerrainMap[x, y] = 0; // Air block
                     }
                 }
 
