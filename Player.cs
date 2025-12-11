@@ -34,7 +34,7 @@ namespace Projekt_Minecraft
 
         public static void Jump(Direction direction)
         {
-            PosY++;
+            PosY--;
             Move(direction);
         }
 
