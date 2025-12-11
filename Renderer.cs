@@ -18,9 +18,9 @@ namespace Projekt_Minecraft
         {
             AnsiConsole.Clear();
             /*
-            for (int i = 0; i < Terrain.TerrainMap.GetLength(0); i++)
+            for (int j = 0; j < Terrain.TerrainMap.GetLength(1); j++)
             {
-                for (int j = 0; j < Terrain.TerrainMap.GetLength(1); j++)
+                for (int i = 0; i < Terrain.TerrainMap.GetLength(0); i++)
                 {
                     Console.Write(Terrain.TerrainMap[i, j] + " ");
                 }

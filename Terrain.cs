@@ -3,6 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Runtime.Serialization;
+using System.Collections.Specialized;
+
 using System.Text;
 
 namespace Projekt_Minecraft
@@ -44,28 +46,35 @@ namespace Projekt_Minecraft
             Random random = Seed == 0 ? new Random() : new Random(Seed);
             int height = (Game.Height / 3) * 2;
 
-            See see = new See(random);
-            Tree tree1 = new Tree(random, see.PosX); // Set oder dictionery einfügen
-            Tree tree2 = new Tree(random, see.PosX);
-            Tree tree3 = new Tree(random, see.PosX);
-        
+            OrderedDictionary Sees = new OrderedDictionary();
+            for (int i = 0; i < 2; i++)
+            {
+                int heightSee = random.Next(3, Game.Width - 7 - 1);
+                if (!Sees.Contains(heightSee + " "))
+                {
+                    Sees.Add(heightSee + " ", new See(heightSee));
+                }
+            }
+
+            OrderedDictionary Trees = new OrderedDictionary();
+            for (int i = 0; i < 3; i++)
+            {
+                int heightTree = random.Next(3, Game.Width - 3 - 1);
+                if (!Trees.Contains(heightTree + " "))
+                {
+                    Trees.Add(heightTree + " ", new Tree(heightTree, Sees));
+                }
+            }
+
             for (int x = 0; x < Game.Width; x++)
             {
-                if (x == see.PosX)
+                if (Sees.Contains(x + " "))
                 {
-                    see.GenerateSee(ref x, ref height);
+                    ((See)Sees[x + " "]).GenerateSee(ref x, ref height);
                 }
-                else if (x == tree1.PosX)
+                else if (Trees.Contains(x + " ") && height > 3)
                 {
-                    tree1.GenerateTree(ref x, ref height, see.PosX);
-                }
-                else if (x == tree2.PosX)
-                {
-                    tree2.GenerateTree(ref x, ref height, see.PosX);
-                }
-                else if (x == tree3.PosX)
-                {
-                    tree3.GenerateTree(ref x, ref height, see.PosX);
+                        ((Tree)Trees[x + " "]).GenerateTree(ref x, ref height);
                 }
                 else
                 {

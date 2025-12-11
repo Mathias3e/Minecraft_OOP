@@ -57,9 +57,10 @@ namespace Projekt_Minecraft
 
                 Player.SetToGround();
                 Renderer.RenderWorld();
+                AnsiConsole.MarkupLine($"\n[with]Seed: {Seed}[/]");
             }
         }
-
+        
         private static bool IsKeyPressed(int keyCode)
         {
             return (GetAsyncKeyState(keyCode) & 0x8000) != 0;

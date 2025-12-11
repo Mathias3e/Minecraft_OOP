@@ -8,9 +8,9 @@ namespace Projekt_Minecraft
     {
         public int PosX { get; private set; }
 
-        public See(Random random)
+        public See(int seePosX)
         {
-            this.PosX = random.Next(3, Game.Width - 3 - 1);
+            this.PosX = seePosX;
         }
 
         public void GenerateSee(ref int x, ref int height)
