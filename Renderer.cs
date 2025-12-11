@@ -25,16 +25,20 @@ namespace Projekt_Minecraft
                     {
                         if (y == 0 || Terrain.TerrainMap[x, y - 1] == 0)
                         {
-                            World.SetPixel(x, y, Color.Green);
+                            World.SetPixel(x, y, Color.Green); // Surface blocks Color
                         }
                         else
                         {
-                            World.SetPixel(x, y, new Color(66, 42, 20));
+                            World.SetPixel(x, y, new Color(66, 42, 20)); // Underground blocks Color
                         }
+                    }
+                    else if (Terrain.TerrainMap[x, y] == 4)
+                    {
+                        World.SetPixel(x, y, new Color(0, 0, 128)); // Water blocks Color
                     }
                     else
                     {
-                        World.SetPixel(x, y, Color.CornflowerBlue);
+                        World.SetPixel(x, y, Color.CornflowerBlue); // Air blocks Color
                     }
                 }
             }
