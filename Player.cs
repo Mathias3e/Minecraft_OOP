@@ -12,7 +12,7 @@ namespace Projekt_Minecraft
         public static int PosX { get; private set; } = 1;
         public static int PosY { get; private set; } = 0;
 
-        public static void Move(Direction direction) // Block dedettion einfügen
+        public static void Move(Direction direction)
         {
             switch (direction)
             {
@@ -68,7 +68,6 @@ namespace Projekt_Minecraft
                     return false;
                     break;
             }
-            //return false;
         }
 
         public static void SetPos(int x, int y)

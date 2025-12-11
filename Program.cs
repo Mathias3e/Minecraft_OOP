@@ -14,10 +14,9 @@ namespace Projekt_Minecraft
         private const int VK_ESCAPE = 0x1B; // ESC
         private const int VK_SPACE = 0x20;  // Leertaste
 
-
         static void Main()
         {
-            Console.Write("Bitte geben sie einen Seed ein (für random seed leerlassen, string = random): ");
+            Console.Write("Bitte geben sie eine ZAHL als Seed ein (für random seed leerlassen): ");
             int.TryParse(Console.ReadLine(), out int Seed);
 
             Terrain.InitializeTerrain();

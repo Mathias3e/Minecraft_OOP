@@ -18,7 +18,7 @@ namespace Projekt_Minecraft
 
         public static void SmoothTerrain() 
         {
-            for (int x = 1; x<Game.Width - 1; x++)
+            for (int x = 1; x < Game.Width - 1; x++)
             {
                 for (int y = Game.Height - 1; y >= 0; y--)
                 {
@@ -44,128 +44,66 @@ namespace Projekt_Minecraft
             Random random = Seed == 0 ? new Random() : new Random(Seed);
             int height = (Game.Height / 3) * 2;
 
-
-           
-
-            Tree tree1 = new Tree(random.Next(3, Game.Width - 3 - 1), height);
-            Tree tree2 = new Tree(random.Next(3, Game.Width - 3 - 1), height);
-            Tree tree3 = new Tree(random.Next(3, Game.Width - 3 - 1), height);
-            See see1 = new See(random.Next(3, Game.Width - 7 - 1), height);
-            
-            //int tree1PosX = random.Next(3, Game.Width - 3 - 1);
-            //int tree2PosX = random.Next(3, Game.Width - 3 - 1);
-            //int tree3PosX = random.Next(3, Game.Width - 3 - 1);
-
+            See see = new See(random);
+            Tree tree1 = new Tree(random, see.PosX); // Set oder dictionery einfügen
+            Tree tree2 = new Tree(random, see.PosX);
+            Tree tree3 = new Tree(random, see.PosX);
+        
             for (int x = 0; x < Game.Width; x++)
             {
-                tree1.GenerateTree(TerrainMap, ref x, ref height, see1.PosX);
-                tree2.GenerateTree(TerrainMap, ref x, ref height, see1.PosX);
-                tree3.GenerateTree(TerrainMap, ref x, ref height, see1.PosX);
-                see1.GenerateSee(TerrainMap, ref x, ref height);
-
-
-                //if (x == PosX)    // Geranate See
-                //{
-
-
-                        //    TerrainMap[x, height + 1] = 1;
-                        //    TerrainMap[x + 1, height + 1] = 1;
-                        //    TerrainMap[x + 2, height + 1] = 4;
-                        //    TerrainMap[x + 3, height + 1] = 4;
-                        //    TerrainMap[x + 4, height + 1] = 4;
-                        //    TerrainMap[x + 5, height + 1] = 1;
-                        //    TerrainMap[x + 6, height + 1] = 1;
-
-                        //    for (int i = x; i < x + 7; i++)
-                        //    {
-                        //        for (int j = height + 2; j < Game.Height; j++)
-                        //        {
-                        //            TerrainMap[i, j] = 1;
-                        //        }
-                        //    }
-
-                        //    for (int i = x; i < x + 7; i++)
-                        //    {
-                        //        for (int j = height - 1; j >= 0; j--)
-                        //        {
-                        //            TerrainMap[i, j] = 9;
-                        //        }
-                        //    }
-
-                        //    x += 6;
-                        //}
-                        //else if ((x == tree2PosX || x == tree1PosX || x == tree3PosX) && height < 3)
-                        //{
-                        //    tree1.GenerateTree(TerrainMap, ref x, ref height);
-                        //    tree2.GenerateTree(TerrainMap, ref x, ref height);
-                        //    tree3.GenerateTree(TerrainMap, ref x, ref height);
-
-                        //    //TerrainMap[x + 1, height - 4] = 3;
-                        //    //TerrainMap[x + 1, height - 3] = 3;
-                        //    //TerrainMap[x + 1, height - 1] = 2;
-                        //    //TerrainMap[x + 1, height - 2] = 2;
-                        //    //TerrainMap[x + 2, height - 3] = 3;
-                        //    //TerrainMap[x, height - 3] = 3;
-                        //    //TerrainMap[x + 2, height - 1] = 9;
-                        //    //TerrainMap[x, height - 1] = 9;
-                        //    //TerrainMap[x + 2, height - 2] = 9;
-                        //    //TerrainMap[x, height - 2] = 9;
-                        //    //TerrainMap[x + 2, height - 4] = 9;
-                        //    //TerrainMap[x, height - 4] = 9;
-
-                        //    //for (int i = x; i < x + 3; i++)
-                        //    //{
-                        //    //    for (int j = height; j < Game.Height; j++)
-                        //    //    {
-                        //    //        TerrainMap[i, j] = 1;
-                        //    //    }
-                        //    //}
-
-                        //    //for (int i = x; i < x + 3; i++)
-                        //    //{
-                        //    //    for (int j = height - 5; j >= 0; j--)
-                        //    //    {
-                        //    //        TerrainMap[i, j] = 9;
-                        //    //    }
-                        //    //}
-
-                        //    //x += 2;
-                        //}
-                //else
-                //{
-                for (int y = Game.Height - 1; y >= 0; y--)
+                if (x == see.PosX)
                 {
-                    if (y >= height)
+                    see.GenerateSee(ref x, ref height);
+                }
+                else if (x == tree1.PosX)
+                {
+                    tree1.GenerateTree(ref x, ref height, see.PosX);
+                }
+                else if (x == tree2.PosX)
+                {
+                    tree2.GenerateTree(ref x, ref height, see.PosX);
+                }
+                else if (x == tree3.PosX)
+                {
+                    tree3.GenerateTree(ref x, ref height, see.PosX);
+                }
+                else
+                {
+                    for (int y = Game.Height - 1; y >= 0; y--)
                     {
-                        TerrainMap[x, y] = 1; // Ground block
+                        if (y >= height)
+                        {
+                            TerrainMap[x, y] = 1; // Ground block
+                        }
+                        else
+                        {
+                            TerrainMap[x, y] = 9; // Air block
+                        }
                     }
-                    else
+
+                    int randomUpDown = random.Next(1, 101);
+
+                    if (randomUpDown <= 25)
                     {
-                        TerrainMap[x, y] = 9; // Air block
+                        height++;
                     }
-                }
+                    else if (randomUpDown <= 50)
+                    {
+                        height--;
+                    }
 
-                int randomUpDown = random.Next(1, 101);
+                    if (height < 2)
+                    {
+                        height = 2;
+                    }
 
-                if (randomUpDown <= 25)
-                {
-                    height++;
-                }
-                else if (randomUpDown <= 50)
-                {
-                    height--;
-                }
-
-                if (height < 2)
-                {
-                    height = 2;
-                }
-
-                if (height > Game.Height - 2)
-                {
-                    height = Game.Height - 2;
-                }
+                    if (height > Game.Height - 2)
+                    {
+                        height = Game.Height - 2;
+                    }
+                } 
             }
+
             SmoothTerrain();
         }
     }

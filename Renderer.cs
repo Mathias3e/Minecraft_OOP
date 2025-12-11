@@ -12,7 +12,7 @@ namespace Projekt_Minecraft
         
         public static void InitializeCanvas()
         {
-            World = new Canvas(Math.Min(Game.Width, 100), Game.Height);
+            World = new Canvas(Math.Min(Game.Width, 100), Game.Height); // Scrol welt vorbereitung
         }
         public static void RenderWorld()
         {
@@ -52,35 +52,19 @@ namespace Projekt_Minecraft
                     }
                     else if (Terrain.TerrainMap[x, y] == 2)
                     {
-                        World.SetPixel(x, y, new Color(138, 102, 66));
+                        World.SetPixel(x, y, new Color(138, 102, 66)); // Wood blocks Color
                     }
                     else if (Terrain.TerrainMap[x, y] == 3)
                     {
-                        World.SetPixel(x, y, Color.DarkGreen);
+                        World.SetPixel(x, y, Color.DarkGreen); // Leaf blocks Color
                     }
                     else
                     {
-                        World.SetPixel(x, y, Color.Red); // Underground blocks Color
+                        World.SetPixel(x, y, Color.Red); // Render unknown blocks
                     }
                 }
             }
-            /*
-            int baumX = 50;
-            int baumY = 7;
 
-            World.SetPixel(baumX, baumY - 3, Color.DarkGreen);
-            World.SetPixel(baumX, baumY -2, Color.DarkGreen);
-            World.SetPixel(baumX, baumY, new Color(138, 102,66));
-            World.SetPixel(baumX, baumY - 1, new Color(138, 102, 66));
-            World.SetPixel(baumX + 1, baumY - 2, Color.DarkGreen);
-            World.SetPixel(baumX - 1, baumY - 2, Color.DarkGreen);
-            World.SetPixel(baumX + 1, baumY, Color.CornflowerBlue);
-            World.SetPixel(baumX - 1, baumY, Color.CornflowerBlue);
-            World.SetPixel(baumX + 1, baumY - 1, Color.CornflowerBlue);
-            World.SetPixel(baumX - 1, baumY - 1, Color.CornflowerBlue);
-            World.SetPixel(baumX + 1, baumY - 3, Color.CornflowerBlue);
-            World.SetPixel(baumX - 1, baumY - 3, Color.CornflowerBlue);
-            */
             World.SetPixel(Player.PosX, Player.PosY, Color.Black);
             World.SetPixel(Player.PosX, Player.PosY - 1, Color.Black);
 
