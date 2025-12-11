@@ -32,6 +32,12 @@ namespace Projekt_Minecraft
             }
         }
 
+        public static void Jump(Direction direction)
+        {
+            PosY++;
+            Move(direction);
+        }
+
         private static bool CheckforBlock(Direction direction)
         {
             switch (direction)
