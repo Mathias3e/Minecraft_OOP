@@ -17,19 +17,52 @@ namespace Projekt_Minecraft
             switch (direction)
             {
                 case Direction.Left:
-                    if (PosX > 0)
+                    if (PosX > 0 && !CheckforBlock(direction))
                     {
                         PosX--;
                     }
                     break;
 
                 case Direction.Right:
-                    if (PosX < Game.Width - 1)
+                    if (PosX < Game.Width - 1 && !CheckforBlock(direction))
                     {
                         PosX++;
                     }
                     break;
             }
+        }
+
+        private static bool CheckforBlock(Direction direction)
+        {
+            switch (direction)
+            {
+                case Direction.Left:
+                    if (Terrain.TerrainMap[PosX - 1, PosY] == 1)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                    break;
+
+                case Direction.Right:
+                    if (Terrain.TerrainMap[PosX + 1, PosY] == 1)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                    break;
+
+                default:
+                    return false;
+                    break;
+            }
+            //return false;
         }
 
         public static void SetPos(int x, int y)
