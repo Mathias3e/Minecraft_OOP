@@ -23,6 +23,7 @@ namespace Projekt_Minecraft
             Renderer.InitializeCanvas();
 
             Terrain.GenerateTerrain(Seed);
+            Game.Seed = Seed;
             Player.SetToGround();
             Renderer.RenderWorld();
 
@@ -57,7 +58,6 @@ namespace Projekt_Minecraft
 
                 Player.SetToGround();
                 Renderer.RenderWorld();
-                AnsiConsole.MarkupLine($"\n[bold white]Seed: {Seed}[/]");
             }
         }
         

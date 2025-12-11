@@ -69,6 +69,8 @@ namespace Projekt_Minecraft
             World.SetPixel(Player.PosX, Player.PosY - 1, Color.Black);
             
             AnsiConsole.Write(World);
+
+            AnsiConsole.MarkupLine($"\n[bold white]Seed: {Game.Seed}[/]");
         }
     }
 }
