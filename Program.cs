@@ -54,6 +54,7 @@ namespace Projekt_Minecraft
                 if (IsKeyPressed(VK_ESCAPE))
                 {
                     running = false;
+                    return;
                 }
 
                 Player.SetToGround();
