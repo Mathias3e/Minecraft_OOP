@@ -43,15 +43,23 @@ namespace Projekt_Minecraft
                         break;
                     */
                     case ConsoleKey.A:
-                    case ConsoleKey.LeftArrow:
                         if (Player.PosX > 0)
                             Player.Move(Direction.Left);
                         break;
 
                     case ConsoleKey.D:
-                    case ConsoleKey.RightArrow:
                         if (Player.PosX < Game.Width - 1)
                             Player.Move(Direction.Right);
+                        break;
+
+                    case ConsoleKey.E:
+                        if (Player.PosX > 0)
+                            Player.Jump(Direction.Left);
+                        break;
+
+                    case ConsoleKey.Q:
+                        if (Player.PosX < Game.Width - 1)
+                            Player.Jump(Direction.Right);
                         break;
 
                     case ConsoleKey.Escape:
