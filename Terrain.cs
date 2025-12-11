@@ -1,6 +1,8 @@
 ﻿using Spectre.Console;
 using System;
 using System.Collections.Generic;
+using System.Collections.Immutable;
+using System.Runtime.Serialization;
 using System.Text;
 
 namespace Projekt_Minecraft
@@ -14,9 +16,9 @@ namespace Projekt_Minecraft
             TerrainMap = new int[Game.Width, Game.Height];
         }
 
-        public static void GenerateTerrain()
+        public static void GenerateTerrain(int Seed = 0)
         {
-            Random random = new Random(3);
+            Random random = Seed == 0 ? new Random() : new Random(Seed);
             int height = (Game.Height / 3) * 2;
             int randomWater = random.Next(95, 100);
             int LastWaterBlockX = -10;

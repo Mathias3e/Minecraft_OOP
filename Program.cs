@@ -17,21 +17,18 @@ namespace Projekt_Minecraft
 
         static void Main()
         {
+            Console.Write("Bitte geben sie einen Seed ein (für random seed leerlassen): ");
+            int.TryParse(Console.ReadLine(), out int Seed);
+
             Game.SetSize(100, 20);
             Terrain.InitializeTerrain();
             Renderer.InitializeCanvas();
 
-            Terrain.GenerateTerrain();
+            Terrain.GenerateTerrain(Seed);
             Player.SetToGround();
             Renderer.RenderWorld();
 
-            /*for (int i = Player.PosX; i < Game.Width - 2; i++)
-            {
-                Thread.Sleep(500);
-                Player.Move(Direction.Right);
-                Player.SetToGround();
-                Renderer.RenderWorld();
-            }*/
+            
             bool running = true;
 
             while (running)
@@ -58,6 +55,7 @@ namespace Projekt_Minecraft
                 if (IsKeyPressed(VK_ESCAPE))
                 {
                     running = false;
+                    return;
                 }
 
                 Player.SetToGround();
