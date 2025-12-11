@@ -29,7 +29,7 @@ namespace Projekt_Minecraft
                         }
                         else
                         {
-                            World.SetPixel(x, y, Color.DarkRed);
+                            World.SetPixel(x, y, new Color(66, 42, 20));
                         }
                     }
                     else
@@ -38,6 +38,13 @@ namespace Projekt_Minecraft
                     }
                 }
             }
+
+            World.SetPixel(5, 2, Color.DarkGreen);
+            World.SetPixel(5, 3, Color.DarkGreen);
+            World.SetPixel(5, 5, new Color(138, 102,66));
+            World.SetPixel(5, 4, new Color(138, 102, 66));
+            World.SetPixel(6, 3, Color.DarkGreen);
+            World.SetPixel(4, 3, Color.DarkGreen);
 
             World.SetPixel(Player.PosX, Player.PosY, Color.Black);
             World.SetPixel(Player.PosX, Player.PosY - 1, Color.Black);
