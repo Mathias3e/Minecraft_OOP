@@ -8,8 +8,7 @@ namespace Projekt_Minecraft
     internal static class Renderer
     {
         public static Canvas World;
-
-
+        
         public static void InitializeCanvas()
         {
             World = new Canvas(Game.Width, Game.Height);
