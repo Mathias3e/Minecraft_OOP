@@ -43,7 +43,14 @@ namespace Projekt_Minecraft
         }
         public static void GenerateTerrain(int Seed)
         {
-            Random random = Seed == 0 ? new Random() : new Random(Seed);
+            if (Seed == 0)
+            {
+                Seed = Environment.TickCount;
+            }
+
+            Random random = new Random(Seed);
+            Game.Seed = Seed;
+
             int height = (Game.Height / 3) * 2;
 
             OrderedDictionary Sees = new OrderedDictionary();

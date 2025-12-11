@@ -10,6 +10,5 @@ namespace Projekt_Minecraft
         public static int Width { get; private set; } = 100;
         public static int Height { get; private set; } = 20 + 2; // platz für spieler durchgehen lassen
         public static int Seed { get; set; }
-
     }
 }

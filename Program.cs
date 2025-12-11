@@ -1,56 +1,58 @@
 ﻿using Spectre.Console;
 using System;
 using System.Runtime.InteropServices;
+using System.Threading;
 
 namespace Projekt_Minecraft
 {
     internal class Program
     {
-        [DllImport("user32.dll")]
-        private static extern short GetAsyncKeyState(int vKey);
-
-        private const int VK_LEFT = 0x25;   // Pfeil-Links
-        private const int VK_RIGHT = 0x27;  // Pfeil-Rechts
-        private const int VK_ESCAPE = 0x1B; // ESC
-        private const int VK_SPACE = 0x20;  // Leertaste
-
         static void Main()
         {
+            Key.SimulateF11();
+            for (int i = 0; i < 5; i++)
+            {
+                Key.SimulateCtrlMinus();
+            }
+
             Console.Write("Bitte geben sie eine ZAHL als Seed ein (für random seed leerlassen): ");
             int.TryParse(Console.ReadLine(), out int Seed);
 
+            Console.TreatControlCAsInput = true;
+
             Terrain.InitializeTerrain();
             Renderer.InitializeCanvas();
-
             Terrain.GenerateTerrain(Seed);
-            Game.Seed = Seed;
             Player.SetToGround();
             Renderer.RenderWorld();
 
             bool running = true;
-
             while (running)
             {
                 Console.ReadKey(true);
-
-                if (IsKeyPressed(VK_LEFT) && IsKeyPressed(VK_SPACE))
+                if (Key.IsKeyPressed(Key.VK_LEFT) && Key.IsKeyPressed(Key.VK_SPACE))
                 {
                     Player.Jump(Direction.Left);
                 }
-                else if (IsKeyPressed(VK_RIGHT) && IsKeyPressed(VK_SPACE))
+                else if (Key.IsKeyPressed(Key.VK_RIGHT) && Key.IsKeyPressed(Key.VK_SPACE))
                 {
                     Player.Jump(Direction.Right);
                 }
-                else if (IsKeyPressed(VK_LEFT) && Player.PosX > 0)
+                else if (Key.IsKeyPressed(Key.VK_LEFT) && Player.PosX > 0)
                 {
                     Player.Move(Direction.Left);
                 }
-                else if (IsKeyPressed(VK_RIGHT) && Player.PosX < Game.Width - 1)
+                else if (Key.IsKeyPressed(Key.VK_RIGHT) && Player.PosX < Game.Width - 1)
                 {
                     Player.Move(Direction.Right);
                 }
 
-                if (IsKeyPressed(VK_ESCAPE))
+                if (Key.IsKeyPressed(Key.VK_CONTROL) && Key.IsKeyPressed(Key.VK_C))
+                {
+                    Clipboard.CopyToClipboard(Game.Seed + "");
+                }
+
+                if (Key.IsKeyPressed(Key.VK_ESCAPE))
                 {
                     running = false;
                     return;
@@ -59,11 +61,6 @@ namespace Projekt_Minecraft
                 Player.SetToGround();
                 Renderer.RenderWorld();
             }
-        }
-        
-        private static bool IsKeyPressed(int keyCode)
-        {
-            return (GetAsyncKeyState(keyCode) & 0x8000) != 0;
         }
     }
 }
