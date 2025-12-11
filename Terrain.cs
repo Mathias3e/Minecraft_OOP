@@ -15,7 +15,7 @@ namespace Projekt_Minecraft
         {
             TerrainMap = new int[Game.Width, Game.Height];
         }
-
+        
         public static void GenerateTerrain(int Seed)
         {
             bool isTree1 = false;
