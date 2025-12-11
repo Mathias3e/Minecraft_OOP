@@ -7,13 +7,7 @@ namespace Projekt_Minecraft
 {
     internal static class Game
     {
-        public static int Width { get; private set; }
-        public static int Height { get; private set; }
-
-        public static void SetSize(int width = 10, int height = 10)
-        {
-            Width = width;
-            Height = height + 2;
-        }
+        public static int Width { get; private set; } = 100;
+        public static int Height { get; private set; } = 22;
     }
 }

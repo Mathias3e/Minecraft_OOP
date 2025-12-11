@@ -12,7 +12,7 @@ namespace Projekt_Minecraft
         
         public static void InitializeCanvas()
         {
-            World = new Canvas(Game.Width, Game.Height);
+            World = new Canvas(Math.Min(Game.Width, 100), Game.Height);
         }
         public static void RenderWorld()
         {
