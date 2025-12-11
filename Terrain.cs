@@ -16,7 +16,8 @@ namespace Projekt_Minecraft
             TerrainMap = new int[Game.Width, Game.Height];
         }
 
-        public static void SmoothTerrain() {
+        public static void SmoothTerrain() 
+        {
             for (int x = 1; x<Game.Width - 1; x++)
             {
                 for (int y = Game.Height - 1; y >= 0; y--)
@@ -27,38 +28,24 @@ namespace Projekt_Minecraft
                         {
                             TerrainMap[x, y] = 9;
                         }
-}
+                    }
+                    else if (TerrainMap[x, y] == 9)
+                    {
+                        if (TerrainMap[x - 1, y] == 1 && TerrainMap[x + 1, y] == 1)
+                        {
+                            TerrainMap[x, y] = 1;
+                        }
+                    }
                 }
             }
         }
         public static void GenerateTerrain(int Seed)
         {
-            bool isTree1 = false;
-            
-            bool isTree2 = false;
-
             Random random = Seed == 0 ? new Random() : new Random(Seed);
             int height = (Game.Height / 3) * 2;
 
-            int seePosX = random.Next(3, Game.Width - 7 - 1);
-            int tree1PosX = random.Next(3, Game.Width - 3 - 1);
-            int tree2PosX = random.Next(3, Game.Width - 3 - 1);
-            int tree3PosX = random.Next(3, Game.Width - 3 - 1);
 
-            if (tree1PosX + 2 >= seePosX && tree1PosX <= seePosX + 6)
-            {
-                tree1PosX = -1;
-            }
-
-            if (tree2PosX + 2 >= seePosX && tree2PosX <= seePosX + 6)
-            {
-                tree2PosX = -1;
-            }
-
-            if (tree3PosX + 2 >= seePosX && tree3PosX <= seePosX + 6)
-            {
-                tree3PosX = -1;
-            }
+           
 
             Tree tree1 = new Tree(random.Next(3, Game.Width - 3 - 1), height);
             Tree tree2 = new Tree(random.Next(3, Game.Width - 3 - 1), height);
@@ -71,9 +58,9 @@ namespace Projekt_Minecraft
 
             for (int x = 0; x < Game.Width; x++)
             {
-                tree1.GenerateTree(TerrainMap, ref x, ref height);
-                tree2.GenerateTree(TerrainMap, ref x, ref height);
-                tree3.GenerateTree(TerrainMap, ref x, ref height);
+                tree1.GenerateTree(TerrainMap, ref x, ref height, see1.PosX);
+                tree2.GenerateTree(TerrainMap, ref x, ref height, see1.PosX);
+                tree3.GenerateTree(TerrainMap, ref x, ref height, see1.PosX);
                 see1.GenerateSee(TerrainMap, ref x, ref height);
 
 
@@ -146,44 +133,40 @@ namespace Projekt_Minecraft
                         //}
                 //else
                 //{
-                    for (int y = Game.Height - 1; y >= 0; y--)
+                for (int y = Game.Height - 1; y >= 0; y--)
+                {
+                    if (y >= height)
                     {
-                        if (y >= height)
-                        {
-                            TerrainMap[x, y] = 1; // Ground block
-                        }
-                        else
-                        {
-                            TerrainMap[x, y] = 9; // Air block
-                        }
+                        TerrainMap[x, y] = 1; // Ground block
                     }
-
-                    int randomUpDown = random.Next(1, 101);
-
-                    if (randomUpDown <= 25)
+                    else
                     {
-                        height++;
-                    }
-                    else if (randomUpDown <= 50)
-                    {
-                        height--;
-                    }
-
-                    if (height < 2)
-                    {
-                        height = 2;
-                    }
-
-                    if (height > Game.Height - 2)
-                    {
-                        height = Game.Height - 2;
+                        TerrainMap[x, y] = 9; // Air block
                     }
                 }
-            }
 
+                int randomUpDown = random.Next(1, 101);
+
+                if (randomUpDown <= 25)
+                {
+                    height++;
+                }
+                else if (randomUpDown <= 50)
+                {
+                    height--;
+                }
+
+                if (height < 2)
+                {
+                    height = 2;
+                }
+
+                if (height > Game.Height - 2)
+                {
+                    height = Game.Height - 2;
+                }
+            }
             SmoothTerrain();
-                //}
-            }           
         }
     }
 }

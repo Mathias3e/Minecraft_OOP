@@ -15,9 +15,12 @@ namespace Projekt_Minecraft
             this.Height = height;
         }
 
-
-        public void GenerateTree(int[,] TerrainMap, ref int x, ref int height)
+        public void GenerateTree(int[,] TerrainMap, ref int x, ref int height, int seePos)
         {
+            if (PosX + 2 >= seePos && PosX <= seePos + 6)
+            {
+                PosX = -1;
+            }
             if (x == PosX && height > 3)
             {
                 TerrainMap[x + 1, height - 4] = 3;
