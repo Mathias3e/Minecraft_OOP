@@ -7,7 +7,7 @@ namespace Projekt_Minecraft
     {
         static void Main()
         {
-            Game.SetSize(50, 10);
+            Game.SetSize(100, 20);
             Terrain.InitializeTerrain();
             Renderer.InitializeCanvas();
 
@@ -15,14 +15,53 @@ namespace Projekt_Minecraft
             Player.SetToGround();
             Renderer.RenderWorld();
 
-            for (int i = Player.PosX; i < Game.Width - 2; i++)
+            /*for (int i = Player.PosX; i < Game.Width - 2; i++)
             {
                 Thread.Sleep(500);
                 Player.Move(Direction.Right);
                 Player.SetToGround();
                 Renderer.RenderWorld();
-            }
+            }*/
+            bool running = true;
 
+            while (running)
+            {
+                ConsoleKey key = Console.ReadKey(true).Key;
+
+                switch (key)
+                {/*
+                    case ConsoleKey.W:
+                    case ConsoleKey.UpArrow:
+                        if (Player.PosY > 0)
+                            Player.PosY--;
+                        break;
+
+                    case ConsoleKey.S:
+                    case ConsoleKey.DownArrow:
+                        if (Player.PosY < height - 2)
+                            Player.PosY++;
+                        break;
+                    */
+                    case ConsoleKey.A:
+                    case ConsoleKey.LeftArrow:
+                        if (Player.PosX > 0)
+                            Player.Move(Direction.Left);
+                        break;
+
+                    case ConsoleKey.D:
+                    case ConsoleKey.RightArrow:
+                        if (Player.PosX < Game.Width - 1)
+                            Player.Move(Direction.Right);
+                        break;
+
+                    case ConsoleKey.Escape:
+                        running = false;
+                        break;
+                }
+
+                Player.SetToGround();
+                Renderer.RenderWorld();
+            }
             /*
             int width = 100;
             int height = 45;
