@@ -57,7 +57,7 @@ namespace Projekt_Minecraft
 
                 Player.SetToGround();
                 Renderer.RenderWorld();
-                AnsiConsole.MarkupLine($"\n[with]Seed: {Seed}[/]");
+                AnsiConsole.MarkupLine($"\n[bold white]Seed: {Seed}[/]");
             }
         }
         
