@@ -1,10 +1,20 @@
 ﻿using Spectre.Console;
 using System;
+using System.Runtime.InteropServices;
 
 namespace Projekt_Minecraft
 {
     internal class Program
     {
+        [DllImport("user32.dll")]
+        private static extern short GetAsyncKeyState(int vKey);
+
+        private const int VK_LEFT = 0x25;   // Pfeil-Links
+        private const int VK_RIGHT = 0x27;  // Pfeil-Rechts
+        private const int VK_ESCAPE = 0x1B; // ESC
+        private const int VK_SPACE = 0x20;  // Leertaste
+
+
         static void Main()
         {
             Game.SetSize(100, 20);
@@ -26,45 +36,28 @@ namespace Projekt_Minecraft
 
             while (running)
             {
-                ConsoleKey key = Console.ReadKey(true).Key;
+                Console.ReadKey(true);
 
-                switch (key)
-                {/*
-                    case ConsoleKey.W:
-                    case ConsoleKey.UpArrow:
-                        if (Player.PosY > 0)
-                            Player.PosY--;
-                        break;
+                if (IsKeyPressed(VK_LEFT) && IsKeyPressed(VK_SPACE))
+                {
+                    Player.Jump(Direction.Left);
+                }
+                else if (IsKeyPressed(VK_RIGHT) && IsKeyPressed(VK_SPACE))
+                {
+                    Player.Jump(Direction.Right);
+                }
+                else if (IsKeyPressed(VK_LEFT) && Player.PosX > 0)
+                {
+                    Player.Move(Direction.Left);
+                }
+                else if (IsKeyPressed(VK_RIGHT) && Player.PosX < Game.Width - 1)
+                {
+                    Player.Move(Direction.Right);
+                }
 
-                    case ConsoleKey.S:
-                    case ConsoleKey.DownArrow:
-                        if (Player.PosY < height - 2)
-                            Player.PosY++;
-                        break;
-                    */
-                    case ConsoleKey.A:
-                        if (Player.PosX > 0)
-                            Player.Move(Direction.Left);
-                        break;
-
-                    case ConsoleKey.D:
-                        if (Player.PosX < Game.Width - 1)
-                            Player.Move(Direction.Right);
-                        break;
-
-                    case ConsoleKey.E:
-                        if (Player.PosX > 0)
-                            Player.Jump(Direction.Right);
-                        break;
-
-                    case ConsoleKey.Q:
-                        if (Player.PosX < Game.Width - 1)
-                            Player.Jump(Direction.Left);
-                        break;
-
-                    case ConsoleKey.Escape:
-                        running = false;
-                        break;
+                if (IsKeyPressed(VK_ESCAPE))
+                {
+                    running = false;
                 }
 
                 Player.SetToGround();
@@ -126,6 +119,11 @@ namespace Projekt_Minecraft
 
             AnsiConsole.Clear();
         */
+        }
+
+        private static bool IsKeyPressed(int keyCode)
+        {
+            return (GetAsyncKeyState(keyCode) & 0x8000) != 0;
         }
     }
 }
