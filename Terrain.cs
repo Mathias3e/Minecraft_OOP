@@ -18,18 +18,31 @@ namespace Projekt_Minecraft
         {
             Random random = new Random(3);
             int height = (Game.Height / 3) * 2;
+            int randomWater = random.Next(95, 100);
+            int LastWaterBlockX = -10;
+            int LastWaterBlockY = -10;
 
             for (int x = 0; x < Game.Width; x++)
             {
                 for (int y = Game.Height - 1; y >= 0; y--)
                 {
                     if (y >= height)
-                    {
-                        TerrainMap[x, y] = 1;
+                    {                                                                                                                                                                                                                                                                       
+                        //if (((LastWaterBlockX == x + 1 || LastWaterBlockX == x - 1) || (LastWaterBlockY == y + 1 || LastWaterBlockY == y - 1)) && randomWater >= 95)
+                        //{
+                        //    TerrainMap[x, y] = 4; // Water block
+                        //    LastWaterBlockX = x;
+                        //    LastWaterBlockY = y;
+                        //    randomWater = random.Next(1, 101);
+                        //}
+                        //else
+                        //{
+                            TerrainMap[x, y] = 1; // Ground block
+                        //}
                     }
                     else
                     {
-                        TerrainMap[x, y] = 0;
+                        TerrainMap[x, y] = 0; // Air block
                     }
                 }
 
