@@ -50,6 +50,14 @@ namespace Projekt_Minecraft
                     {
                         World.SetPixel(x, y, Color.CornflowerBlue); // Air blocks Color
                     }
+                    else if (Terrain.TerrainMap[x, y] == 2)
+                    {
+                        World.SetPixel(x, y, new Color(138, 102, 66));
+                    }
+                    else if (Terrain.TerrainMap[x, y] == 3)
+                    {
+                        World.SetPixel(x, y, Color.DarkGreen);
+                    }
                     else
                     {
                         World.SetPixel(x, y, Color.Red); // Underground blocks Color
@@ -72,25 +80,6 @@ namespace Projekt_Minecraft
             World.SetPixel(baumX - 1, baumY - 1, Color.CornflowerBlue);
             World.SetPixel(baumX + 1, baumY - 3, Color.CornflowerBlue);
             World.SetPixel(baumX - 1, baumY - 3, Color.CornflowerBlue);
-
-            int seeX = 33;
-            int seeY = 12;
-
-            World.SetPixel(seeX, seeY, Color.Green);
-            World.SetPixel(seeX + 1, seeY, new Color(0, 0, 128));
-            World.SetPixel(seeX + 2, seeY, new Color(0, 0, 128));
-            World.SetPixel(seeX + 3, seeY, new Color(0, 0, 128));
-            World.SetPixel(seeX + 4, seeY, new Color(0, 0, 128));
-            World.SetPixel(seeX + 5, seeY, new Color(0, 0, 128));
-            World.SetPixel(seeX + 6, seeY, Color.Green);
-
-            World.SetPixel(seeX, seeY + 1, new Color(66, 42, 20));
-            World.SetPixel(seeX + 1, seeY + 1, new Color(66, 42, 20));
-            World.SetPixel(seeX + 2, seeY + 1, new Color(0, 0, 128));
-            World.SetPixel(seeX + 3, seeY + 1, new Color(0, 0, 128));
-            World.SetPixel(seeX + 4, seeY + 1, new Color(0, 0, 128));
-            World.SetPixel(seeX + 5, seeY + 1, new Color(66, 42, 20));
-            World.SetPixel(seeX + 6, seeY + 1, new Color(66, 42, 20));
             */
             World.SetPixel(Player.PosX, Player.PosY, Color.Black);
             World.SetPixel(Player.PosX, Player.PosY - 1, Color.Black);
