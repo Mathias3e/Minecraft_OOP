@@ -43,8 +43,8 @@ namespace Projekt_Minecraft
                 }
             }
 
-            int baumX = 50;
-            int baumY = 7;
+            int baumX = 49;
+            int baumY = 8;
 
             World.SetPixel(baumX, baumY - 3, Color.DarkGreen);
             World.SetPixel(baumX, baumY -2, Color.DarkGreen);
@@ -53,8 +53,8 @@ namespace Projekt_Minecraft
             World.SetPixel(baumX + 1, baumY - 2, Color.DarkGreen);
             World.SetPixel(baumX - 1, baumY - 2, Color.DarkGreen);
 
-            int seeX = 35;
-            int seeY = 12;
+            int seeX = 32;
+            int seeY = 13;
 
             World.SetPixel(seeX, seeY, Color.Green);
             World.SetPixel(seeX + 1, seeY, new Color(0, 0, 128));
