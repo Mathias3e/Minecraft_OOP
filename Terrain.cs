@@ -68,13 +68,13 @@ namespace Projekt_Minecraft
 
             for (int x = 0; x < Game.Width; x++)
             {
-                if (Sees.Contains(x + " "))
+                if (Sees.Contains(x + " ") && height < Game.Height - 2)
                 {
                     ((See)Sees[x + " "]).GenerateSee(ref x, ref height);
                 }
                 else if (Trees.Contains(x + " ") && height > 3)
                 {
-                        ((Tree)Trees[x + " "]).GenerateTree(ref x, ref height);
+                    ((Tree)Trees[x + " "]).GenerateTree(ref x, ref height);
                 }
                 else
                 {

@@ -78,7 +78,7 @@ namespace Projekt_Minecraft
 
         public static void SetToGround()
         {
-            for (int posY = 0; posY < Game.Height - 1; posY++)
+            for (int posY = PosY; posY < Game.Height; posY++)
             {
                 if (Terrain.TerrainMap[PosX, posY] == 1)
                 {
