@@ -25,45 +25,13 @@ namespace Projekt_Minecraft
             int height = (Game.Height / 3) * 2;
 
             int seePosX = random.Next(3, Game.Width - 7 - 1);
+            int tree1PosX = random.Next(3, Game.Width - 3 - 1);
+            int tree2PosX = random.Next(3, Game.Width - 3 - 1);
+            int tree3PosX = random.Next(3, Game.Width - 3 - 1);
 
             for (int x = 0; x < Game.Width; x++)
             {
-                if (x != seePosX)
-                {
-                    for (int y = Game.Height - 1; y >= 0; y--)
-                    {
-                        if (y >= height)
-                        {
-                            TerrainMap[x, y] = 1; // Ground block
-                        }
-                        else
-                        {
-                            TerrainMap[x, y] = 9; // Air block
-                        }
-                    }
-
-                    int randomUpDown = random.Next(1, 101);
-
-                    if (randomUpDown <= 25)
-                    {
-                        height++;
-                    }
-                    else if (randomUpDown <= 50)
-                    {
-                        height--;
-                    }
-
-                    if (height < 2)
-                    {
-                        height = 2;
-                    }
-
-                    if (height > Game.Height - 2)
-                    {
-                        height = Game.Height - 2;
-                    }
-                }
-                else
+                if (x == seePosX)
                 {
                     TerrainMap[x, height] = 1;
                     TerrainMap[x + 1, height] = 4;
@@ -98,10 +66,76 @@ namespace Projekt_Minecraft
                     }
 
                     x += 6;
-
-                    Console.Write("See");
                 }
-            }
+                else if ((x == tree2PosX || x == tree1PosX || x == tree3PosX) && height > 3)
+                {
+                    TerrainMap[x + 1, height - 4] = 3;
+                    TerrainMap[x + 1, height - 3] = 3;
+                    TerrainMap[x + 1, height - 1] = 2;
+                    TerrainMap[x + 1, height - 2] = 2;
+                    TerrainMap[x + 2, height - 3] = 3;
+                    TerrainMap[x, height - 3] = 3;
+                    TerrainMap[x + 2, height - 1] = 9;
+                    TerrainMap[x, height - 1] = 9;
+                    TerrainMap[x + 2, height - 2] = 9;
+                    TerrainMap[x, height - 2] = 9;
+                    TerrainMap[x + 2, height - 4] = 9;
+                    TerrainMap[x, height - 4] = 9;
+
+                    for (int i = x; i < x + 3; i++)
+                    {
+                        for (int j = height; j < Game.Height; j++)
+                        {
+                            TerrainMap[i, j] = 1;
+                        }
+                    }
+
+                    for (int i = x; i < x + 3; i++)
+                    {
+                        for (int j = height - 5; j >= 0; j--)
+                        {
+                            TerrainMap[i, j] = 9;
+                        }
+                    }
+
+                    x += 2;
+                }
+                else
+                {
+                    for (int y = Game.Height - 1; y >= 0; y--)
+                    {
+                        if (y >= height)
+                        {
+                            TerrainMap[x, y] = 1; // Ground block
+                        }
+                        else
+                        {
+                            TerrainMap[x, y] = 9; // Air block
+                        }
+                    }
+
+                    int randomUpDown = random.Next(1, 101);
+
+                    if (randomUpDown <= 25)
+                    {
+                        height++;
+                    }
+                    else if (randomUpDown <= 50)
+                    {
+                        height--;
+                    }
+
+                    if (height < 2)
+                    {
+                        height = 2;
+                    }
+
+                    if (height > Game.Height - 2)
+                    {
+                        height = Game.Height - 2;
+                    }
+                }
+            }           
         }
     }
 }
