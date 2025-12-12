@@ -58,6 +58,33 @@ namespace Projekt_Minecraft
                     return;
                 }
 
+                /*
+                // Seed Finder
+                bool found = false;
+                int i = 0;
+                while (!found)
+                {
+                    i++;
+                    Game.Seed = i;
+                    Terrain.GenerateTerrain(Game.Seed);
+
+                    //Console.Write(".");
+
+                    for (int x = 0; x < Game.Width - 20; x++)
+                    {
+                        for (int y = 0; y < Game.Height - 1; y++)
+                        {
+                            if (Terrain.TerrainMap[x, y] == 2 && Terrain.TerrainMap[x + 3, y + 1] == 4 && Terrain.TerrainMap[x + 10, y] == 2 && Terrain.TerrainMap[x + 13, y + 1] == 4 && Terrain.TerrainMap[x + 20, y] == 2) // Key
+                            {
+                                found = true;
+                                Renderer.RenderWorld();
+                                return;
+                            }
+                        }
+                    }
+                }
+                */
+
                 Player.SetToGround();
                 Renderer.RenderWorld();
             }
